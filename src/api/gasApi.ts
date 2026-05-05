@@ -1,4 +1,4 @@
-import {
+import type {
   EIADataPoint,
   GasPriceDataPoint,
   GasPriceResponse,
@@ -9,13 +9,13 @@ import { PADD_REGIONS, NATIONAL_ID } from "../constants/paddRegions";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-// Converts a raw EIA data point to our clean internal shape
+// Converts a raw EIA data point to internal shape
 const parseDataPoint = (point: EIADataPoint): GasPriceDataPoint => ({
   date: point.period,
   price: parseFloat(point.value),
 });
 
-// Filters and sorts data points for a specific area, oldest to newest
+// Filters and sorts data points for a specific area
 const getAreaTrend = (
   data: EIADataPoint[],
   duoarea: string,
