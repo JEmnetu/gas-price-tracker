@@ -8,7 +8,7 @@ export interface EIADataPoint {
 }
 
 export interface GasPriceDataPoint {
-  data: string;
+  date: string;
   price: number;
 }
 
