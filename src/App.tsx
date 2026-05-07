@@ -4,12 +4,18 @@ import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
 import SummaryBar from "./components/SummaryBar";
+import RegionalMap from "./components/RegionalMap";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      {/* <RegionalMap
+        regions={[]}
+        selectedRegion={null}
+        onRegionClick={(id) => console.log(id)}
+      /> */}
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
