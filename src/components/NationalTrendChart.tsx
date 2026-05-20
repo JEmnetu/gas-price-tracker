@@ -2,10 +2,13 @@ import type { GasPriceDataPoint, TimeRange } from "../types";
 import {
   LineChart,
   Line,
+  CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  AreaChart,
+  Area,
 } from "recharts";
 
 interface NationalTrendChartProps {
@@ -16,15 +19,31 @@ interface NationalTrendChartProps {
 const NationalTrendChart = ({ trend, selected }: NationalTrendChartProps) => {
   return (
     <>
-      <h2>{selected}</h2>
       <ResponsiveContainer width="100%" height={400}>
-        <LineChart data={trend}>
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-
-          <Line type="monotone" dataKey="price" stroke="#3B82F6" dot={false} />
-        </LineChart>
+        <AreaChart data={trend}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+          <XAxis
+            dataKey="date"
+            tickFormatter={(value) => {
+              const d = new Date(value);
+              return `${d.getMonth() + 1}/${d.getDate()}`;
+            }}
+            interval={2}
+          />
+          <YAxis tickFormatter={(value) => `$${value}`} />
+          <Tooltip
+            formatter={(value: number) => [`$${value.toFixed(2)}`, "Price"]}
+          />
+          <Area
+            type="monotone"
+            dataKey="price"
+            stroke="#1d4ed8"
+            strokeWidth={1.5}
+            fill="#1d4ed8"
+            fillOpacity={0.15}
+            dot={false}
+          />
+        </AreaChart>
       </ResponsiveContainer>
     </>
   );
