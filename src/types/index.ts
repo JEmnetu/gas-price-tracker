@@ -17,6 +17,8 @@ export interface NationalTrendData {
   previousWeek: number;
   weekOverWeekChange: number;
   trend: GasPriceDataPoint[];
+  highest: number;
+  lowest: number;
 }
 
 // single PADD region
@@ -35,3 +37,5 @@ export interface GasPriceResponse {
 }
 
 export type TimeRange = "1M" | "3M" | "6M" | "1Y" | "5Y";
+
+export type ActiveTab = "national" | "regional";
