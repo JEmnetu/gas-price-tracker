@@ -17,8 +17,6 @@ export interface NationalTrendData {
   previousWeek: number;
   weekOverWeekChange: number;
   trend: GasPriceDataPoint[];
-  highest: number;
-  lowest: number;
 }
 
 // single PADD region

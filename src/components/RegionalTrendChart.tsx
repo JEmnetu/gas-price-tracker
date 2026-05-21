@@ -8,6 +8,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { getXAxisInterval } from "../utils/chartUtils";
+
 interface RegionalTrendChartProps {
   region: PADDRegion | null;
   nationalAvg: number | null;
@@ -22,7 +24,7 @@ const RegionalTrendChart = ({
   const varianceSign: number | null = Math.sign(variance);
   return (
     <>
-      <h3 className="text-base text-center font-medium text-gray-900">
+      <h3 className="text-base text-center font-medium text-gray-900 ps-14">
         {region?.name}
       </h3>
       <ResponsiveContainer width="100%" height={400}>
@@ -33,9 +35,12 @@ const RegionalTrendChart = ({
               const d = new Date(value);
               return `${d.getMonth() + 1}/${d.getDate()}`;
             }}
-            interval={2}
+            interval={getXAxisInterval("1Y")}
           />
-          <YAxis tickFormatter={(value) => `$${value}`} />
+          <YAxis
+            tickFormatter={(value) => `$${value}`}
+            domain={["auto", "auto"]}
+          />
           <Tooltip />
 
           <Line type="monotone" dataKey="price" stroke="#3B82F6" dot={false} />

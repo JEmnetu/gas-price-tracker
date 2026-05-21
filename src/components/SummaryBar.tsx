@@ -5,6 +5,7 @@ interface SummaryBarPropType {
   lowestRegion: string;
   highestPrice: number;
   lowestPrice: number;
+  lastUpdated: string;
 }
 
 const SummaryBar = ({
@@ -14,6 +15,7 @@ const SummaryBar = ({
   lowestRegion,
   highestPrice,
   lowestPrice,
+  lastUpdated,
 }: SummaryBarPropType) => {
   const weekOverWeek = weeklyDelta != null ? Math.sign(weeklyDelta) : null;
 
@@ -25,27 +27,41 @@ const SummaryBar = ({
             US Gas Price Tracker
           </h1>{" "}
           <p className="text-xs text-gray-600 font-medium">
-            Updated May 9, 2026
+            Updated{" "}
+            {new Date(lastUpdated).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
           </p>
         </div>
-        <p className="text-xs text-gray-600 whitespace-nowrap">
+        <p className=" hidden md:block text-xs text-gray-600 whitespace-nowrap">
           Source: US Energy Information Administration{" "}
         </p>
       </div>
 
       <div className="w-full flex">
-        <div className="w-1/3 pl-8 pt-3 pb-3 border-b border-r border-gray-200">
-          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+        <div className="w-1/3 py-4 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
+          <p className="text-xs  text-gray-400 uppercase tracking-wider mb-1">
             National Average
           </p>
           <p className="text-2xl font-medium text-gray-900">
             ${nationalAvg?.toFixed(2)}
           </p>
-          <p className="text-xs text-red-500 font-medium mt-0.5">
-            ↑ $0.33 from last week
+          <p
+            className={
+              weekOverWeek === 1
+                ? "text-xs text-red-500 font-medium mt-0.5"
+                : weekOverWeek === -1
+                  ? "text-xs text-green-500 font-medium mt-0.5"
+                  : "text-xs text-black-500 font-medium mt-0.5"
+            }
+          >
+            {weekOverWeek === 1 ? "↑" : weekOverWeek === -1 ? "↓" : "—"} $
+            {Math.abs(weeklyDelta).toFixed(2)} from last week
           </p>
         </div>
-        <div className="w-1/3 pl-8 pt-3 pb-3 border-b border-r border-gray-200">
+        <div className="w-1/3 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
           <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
             Highest Region
           </p>
@@ -54,7 +70,7 @@ const SummaryBar = ({
           </p>
           <p className="text-xs text-500 font-medium mt-0.5">{highestRegion}</p>
         </div>
-        <div className="w-1/3 pl-8 pt-3 pb-3 border-b border-r border-gray-200">
+        <div className="w-1/3 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
           <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
             Lowest Region
           </p>
