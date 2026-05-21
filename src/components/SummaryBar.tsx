@@ -42,7 +42,8 @@ const SummaryBar = ({
             ${nationalAvg?.toFixed(2)}
           </p>
           <p className="text-xs text-red-500 font-medium mt-0.5">
-            ↑ $0.33 from last week
+            {weeklyDelta?.toFixed(3)} from last week
+            {/* ↑ $0.33 from last week */}
           </p>
         </div>
         <div className="w-1/3 pl-8 pt-3 pb-3 border-b border-r border-gray-200">
