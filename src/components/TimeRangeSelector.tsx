@@ -9,7 +9,7 @@ const TIME_RANGES: TimeRange[] = ["1M", "3M", "6M", "1Y", "5Y"];
 
 const TimeRangeSelector = ({ selected, onChange }: TimeRangeSelectorProps) => {
   return (
-    <div className="flex gap-2 mb-12 md:mb-0">
+    <div className="flex gap-2 mb-0">
       {TIME_RANGES.map((range) => {
         return (
           <button
