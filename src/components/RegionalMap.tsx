@@ -10,11 +10,7 @@ interface RegionalMapProps {
   onRegionClick: (regionId: string) => void;
 }
 
-const RegionalMap = ({
-  regions,
-  selectedRegion,
-  onRegionClick,
-}: RegionalMapProps) => {
+const RegionalMap = ({ selectedRegion, onRegionClick }: RegionalMapProps) => {
   useEffect(() => {
     Object.entries(STATE_PADD_MAP).forEach(([stateId, paddId]) => {
       const el = document.getElementById(stateId);

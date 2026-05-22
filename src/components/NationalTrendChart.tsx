@@ -1,7 +1,5 @@
 import type { GasPriceDataPoint, TimeRange } from "../types";
 import {
-  LineChart,
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,
@@ -37,7 +35,7 @@ const NationalTrendChart = ({ trend, selected }: NationalTrendChartProps) => {
             domain={["auto", "auto"]}
           />
           <Tooltip
-            formatter={(value: number) => [`$${value.toFixed(2)}`, "Price"]}
+            formatter={(value) => [`$${Number(value).toFixed(2)}`, "Price"]}
           />
           <Area
             type="monotone"

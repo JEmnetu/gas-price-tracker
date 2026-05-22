@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import NationalTrendChart from "../components/NationalTrendChart";
 
 describe("NationalTrendChart", () => {

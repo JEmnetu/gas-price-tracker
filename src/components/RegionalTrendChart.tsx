@@ -21,7 +21,8 @@ const RegionalTrendChart = ({
 }: RegionalTrendChartProps) => {
   const variance: number | null =
     region != null && nationalAvg != null ? region.current - nationalAvg : null;
-  const varianceSign: number | null = Math.sign(variance);
+
+  const varianceSign = variance != null ? Math.sign(variance) : null;
   return (
     <>
       <h3 className="text-base text-center font-medium text-gray-900 ps-14">

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useGasData from "./hooks/useGasData";
 import "./App.css";
 import SummaryBar from "./components/SummaryBar";
 import RegionalMap from "./components/RegionalMap";
-import type { ActiveTab, PADDRegion, TimeRange } from "./types";
+import type { ActiveTab, TimeRange } from "./types";
 import NationalTrendChart from "./components/NationalTrendChart";
 import RegionalTrendChart from "./components/RegionalTrendChart";
 import TimeRangeSelector from "./components/TimeRangeSelector";
@@ -45,7 +45,7 @@ function App() {
           data?.regions.reduce((a, b) => (a.current < b.current ? a : b))
             .name ?? "-"
         }
-        lastUpdated={data?.lastUpdated}
+        lastUpdated={data?.lastUpdated ?? ""}
       />
       <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-between  px-8 md:py-2 border-gray-200 border-b">
         <div className="flex pt-2 pb-2">
