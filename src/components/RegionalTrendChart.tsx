@@ -60,7 +60,7 @@ const RegionalTrendChart = ({
             }
           >
             ${varianceSign === 1 && "+"}
-            {variance.toFixed(2)}
+            {variance?.toFixed(2)}
           </span>
         </p>
       </div>
