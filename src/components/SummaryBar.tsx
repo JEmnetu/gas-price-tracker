@@ -3,8 +3,8 @@ interface SummaryBarPropType {
   weeklyDelta: number | null;
   highestRegion: string;
   lowestRegion: string;
-  highestPrice: number;
-  lowestPrice: number;
+  highestPrice: number | null;
+  lowestPrice: number | null;
   lastUpdated: string;
 }
 
@@ -58,7 +58,8 @@ const SummaryBar = ({
             }
           >
             {weekOverWeek === 1 ? "↑" : weekOverWeek === -1 ? "↓" : "—"} $
-            {Math.abs(weeklyDelta).toFixed(2)} from last week
+            {weeklyDelta != null ? Math.abs(weeklyDelta).toFixed(2) : "—"} from
+            last week
           </p>
         </div>
         <div className="w-1/3 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">

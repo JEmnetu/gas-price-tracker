@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import RegionalMap from "../components/RegionalMap";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 
 vi.mock("../assets/us.svg?react", () => ({
   default: ({
