@@ -1,20 +1,24 @@
+import time
 import json
 import os
 import urllib.request
-from datetime import datetime, timedelta
+from datetime import datetime as dt, timedelta
+
+CACHE_TTL = 86400 #1 day in seconds
+_cache = {}
 
 EIA_API_KEY = os.environ.get("EIA_API_KEY")
 EIA_BASE_URL = "https://api.eia.gov/v2/petroleum/pri/gnd/data/"
 AREAS = ["NUS", "R10", "R20", "R30", "R40", "R50"]
 
 def build_eia_url(weeks: int) -> str:
-    start_date = (datetime.now - timedelta(weeks=weeks)).strftime("%Y-%m-%d")
+    start_date = (dt.now() - timedelta(weeks=weeks)).strftime("%Y-%m-%d")
 
     params = [
         f"api_key={EIA_API_KEY}",
         "frequency=weekly",
         "data[0]=value",
-        "facets[product][]=EPMO",
+        "facets[product][]=EPM0",
         "sort[0][column]=period",
         "sort[0][direction]=desc",
         f"start={start_date}",
@@ -42,20 +46,35 @@ def lambda_handler(event, context):
         weeks = int(query_params.get("weeks", 52))
         weeks = max(4, min(weeks, 260))
 
+        if weeks in _cache:
+            cached_data, cached_time = _cache[weeks]
+            if time.time() - cached_time < CACHE_TTL:
+                print(f"Cache hit for weeks={weeks}")
+                return {
+                    "statusCode": 200,
+                    "headers": cors_headers,
+                    "body": (cached_data),
+                }
+        
+        print(f"Cache miss for weeks={weeks}, fetching from EIA")
         url = build_eia_url(weeks)
 
-        with urllib.request.urlopen(url) as response:
+        with urllib.request.urlopen(url, timeout=12) as response:
             raw = json.loads(response.read().decode())
 
         data = raw.get("response", {}).get("data", [])
+        body = json.dumps(data)
+
+        _cache[weeks] = (body, time.time())
 
         return {
             "statusCode": 200,
             "headers": cors_headers,
-            "body": json.dumps(data),
+            "body": body,
         }
     
     except Exception as e:
+        print(f"Error: {str(e)}")
         return{
             "statusCode": 500,
             "headers": cors_headers,
