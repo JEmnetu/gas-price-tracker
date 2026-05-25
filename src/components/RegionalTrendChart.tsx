@@ -1,4 +1,4 @@
-import type { PADDRegion } from "../types";
+import type { PADDRegion, TimeRange } from "../types";
 import {
   LineChart,
   Line,
@@ -8,16 +8,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { getXAxisInterval } from "../utils/chartUtils";
+import { getRegionalXAxisInterval } from "../utils/chartUtils";
 
 interface RegionalTrendChartProps {
   region: PADDRegion | null;
   nationalAvg: number | null;
+  timeRange: TimeRange;
 }
 
 const RegionalTrendChart = ({
   region,
   nationalAvg,
+  timeRange,
 }: RegionalTrendChartProps) => {
   const variance: number | null =
     region != null && nationalAvg != null ? region.current - nationalAvg : null;
@@ -36,7 +38,7 @@ const RegionalTrendChart = ({
               const d = new Date(value);
               return `${d.getMonth() + 1}/${d.getDate()}`;
             }}
-            interval={getXAxisInterval("1Y")}
+            interval={getRegionalXAxisInterval(timeRange)}
           />
           <YAxis
             tickFormatter={(value) => `$${value}`}

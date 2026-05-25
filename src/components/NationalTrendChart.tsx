@@ -9,7 +9,7 @@ import {
   Area,
 } from "recharts";
 
-import { getXAxisInterval } from "../utils/chartUtils";
+import { getNationalXAxisInterval } from "../utils/chartUtils";
 
 interface NationalTrendChartProps {
   trend: GasPriceDataPoint[];
@@ -28,7 +28,7 @@ const NationalTrendChart = ({ trend, selected }: NationalTrendChartProps) => {
               const d = new Date(value);
               return `${d.getMonth() + 1}/${d.getDate()}`;
             }}
-            interval={getXAxisInterval(selected)}
+            interval={getNationalXAxisInterval(selected)}
           />
           <YAxis
             tickFormatter={(value) => `$${value}`}
