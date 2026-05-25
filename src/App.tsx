@@ -17,8 +17,8 @@ function App() {
     : null;
   const [activeTab, setActiveTab] = useState<ActiveTab>("national");
 
-  if (loading && !data)
-    return <div className="p-8 text-center">Loading...</div>;
+  // if (loading && !data)
+  //   return <div className="p-8 text-center">Loading...</div>;
   if (error)
     return (
       <div className="p-8 text-center text-red-600">Failed to load data.</div>
