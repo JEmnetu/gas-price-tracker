@@ -151,6 +151,7 @@ function App() {
                   <RegionalTrendChart
                     region={selectedRegion}
                     nationalAvg={data?.national.current ?? null}
+                    timeRange={timeRange}
                   />
                 ) : (
                   <p className="text-gray-400 text-center mt-40">

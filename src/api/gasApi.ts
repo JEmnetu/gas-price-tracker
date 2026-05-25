@@ -56,7 +56,6 @@ export const fetchGasPrices = async (
   weeks: number = 52,
 ): Promise<GasPriceResponse> => {
   const response = await fetch(`${API_BASE_URL}/prices?weeks=${weeks}`);
-  console.log(response);
 
   if (!response.ok) {
     throw new Error(`Failed to fetch gas prices: ${response.status}`);

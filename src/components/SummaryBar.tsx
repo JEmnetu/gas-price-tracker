@@ -28,11 +28,13 @@ const SummaryBar = ({
           </h1>{" "}
           <p className="text-xs text-gray-600 font-medium">
             Updated{" "}
-            {new Date(lastUpdated).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
+            {lastUpdated
+              ? new Date(lastUpdated).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })
+              : ""}
           </p>
         </div>
         <p className=" hidden md:block text-xs text-gray-600 whitespace-nowrap">
