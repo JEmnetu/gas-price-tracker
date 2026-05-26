@@ -7,7 +7,9 @@ describe("RegionalTrendChart", () => {
   });
 
   it("renders successfully", () => {
-    render(<RegionalTrendChart region={null} nationalAvg={null} />);
+    render(
+      <RegionalTrendChart region={null} nationalAvg={null} timeRange={"1Y"} />,
+    );
   });
 
   it("correctly displays region name when a region is passed", () => {
@@ -20,6 +22,7 @@ describe("RegionalTrendChart", () => {
           trend: [{ date: "2026-05-04", price: 3.45 }],
         }}
         nationalAvg={4.62}
+        timeRange={"1Y"}
       />,
     );
 
