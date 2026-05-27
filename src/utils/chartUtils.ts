@@ -1,4 +1,5 @@
 import type { TimeRange } from "../types/";
+import useIsMobile from "../hooks/useIsMobile";
 
 export const getNationalXAxisInterval = (selected: TimeRange): number => {
   switch (selected) {
@@ -9,9 +10,9 @@ export const getNationalXAxisInterval = (selected: TimeRange): number => {
     case "6M":
       return 3;
     case "1Y":
-      return 5;
+      return useIsMobile ? 7 : 5;
     case "5Y":
-      return 25;
+      return useIsMobile ? 48 : 25;
     default:
       return 5;
   }
@@ -26,7 +27,7 @@ export const getRegionalXAxisInterval = (selected: TimeRange): number => {
     case "6M":
       return 3;
     case "1Y":
-      return 5;
+      return useIsMobile ? 7 : 5;
     case "5Y":
       return 40;
     default:

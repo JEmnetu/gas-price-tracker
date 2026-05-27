@@ -34,12 +34,19 @@ const RegionalTrendChart = ({
         <LineChart data={region?.trend}>
           <XAxis
             dataKey="date"
+            interval={getRegionalXAxisInterval(timeRange)}
+            angle={timeRange === "5Y" ? -45 : 0}
+            textAnchor={timeRange === "5Y" ? "end" : "middle"}
+            height={timeRange === "5Y" ? 50 : 30}
             tickFormatter={(value) => {
               const d = new Date(value);
+              if (timeRange === "5Y") {
+                return `${d.getMonth() + 1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`;
+              }
               return `${d.getMonth() + 1}/${d.getDate()}`;
             }}
-            interval={getRegionalXAxisInterval(timeRange)}
           />
+
           <YAxis
             tickFormatter={(value) => `$${value}`}
             domain={["auto", "auto"]}
