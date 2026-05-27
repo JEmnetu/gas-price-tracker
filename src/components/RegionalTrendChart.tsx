@@ -10,6 +10,8 @@ import {
 
 import { getRegionalXAxisInterval } from "../utils/chartUtils";
 
+import useIsMobile from "../hooks/useIsMobile";
+
 interface RegionalTrendChartProps {
   region: PADDRegion | null;
   nationalAvg: number | null;
@@ -24,6 +26,7 @@ const RegionalTrendChart = ({
   const variance: number | null =
     region != null && nationalAvg != null ? region.current - nationalAvg : null;
 
+  const isMobile = useIsMobile();
   const varianceSign = variance != null ? Math.sign(variance) : null;
   return (
     <>
@@ -34,7 +37,7 @@ const RegionalTrendChart = ({
         <LineChart data={region?.trend}>
           <XAxis
             dataKey="date"
-            interval={getRegionalXAxisInterval(timeRange)}
+            interval={getRegionalXAxisInterval(timeRange, isMobile)}
             angle={timeRange === "5Y" ? -45 : 0}
             textAnchor={timeRange === "5Y" ? "end" : "middle"}
             height={timeRange === "5Y" ? 50 : 30}

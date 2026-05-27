@@ -11,12 +11,15 @@ import {
 
 import { getNationalXAxisInterval } from "../utils/chartUtils";
 
+import useIsMobile from "../hooks/useIsMobile";
+
 interface NationalTrendChartProps {
   trend: GasPriceDataPoint[];
   selected: TimeRange;
 }
 
 const NationalTrendChart = ({ trend, selected }: NationalTrendChartProps) => {
+  const isMobile = useIsMobile();
   return (
     <>
       <ResponsiveContainer width="100%" height={400}>
@@ -24,7 +27,7 @@ const NationalTrendChart = ({ trend, selected }: NationalTrendChartProps) => {
           <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
           <XAxis
             dataKey="date"
-            interval={getNationalXAxisInterval(selected)}
+            interval={getNationalXAxisInterval(selected, isMobile)}
             angle={selected === "5Y" ? -45 : 0}
             textAnchor={selected === "5Y" ? "end" : "middle"}
             height={selected === "5Y" ? 50 : 30}
