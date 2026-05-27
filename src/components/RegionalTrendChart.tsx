@@ -63,7 +63,7 @@ const RegionalTrendChart = ({
         </LineChart>
       </ResponsiveContainer>
       <div className="w-full flex justify-evenly ml-6 mt-8">
-        <p>Current Price: ${(region?.current).toFixed(2)}</p>
+        <p>Current Price: ${(region?.current ?? 0).toFixed(2)}</p>
         <p>
           Variance vs National Price:
           <span
