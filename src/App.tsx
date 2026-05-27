@@ -47,7 +47,7 @@ function App() {
         }
         lastUpdated={data?.lastUpdated ?? ""}
       />
-      <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-between  px-8 md:py-2 border-gray-200 border-b">
+      <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-between  px-8 py-1 md:py-2 border-gray-200 border-b">
         <div className="flex pt-2 pb-2">
           <div
             onClick={() => setActiveTab("national")}
