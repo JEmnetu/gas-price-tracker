@@ -43,7 +43,7 @@ const SummaryBar = ({
       </div>
 
       <div className="w-full flex">
-        <div className="w-1/3 py-4 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
+        <div className="w-1/3 md:py-4 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
           <p className="text-xs  text-gray-400 uppercase tracking-wider mb-1">
             National Average
           </p>
@@ -60,8 +60,8 @@ const SummaryBar = ({
             }
           >
             {weekOverWeek === 1 ? "↑" : weekOverWeek === -1 ? "↓" : "—"} $
-            {weeklyDelta != null ? Math.abs(weeklyDelta).toFixed(2) : "—"} from
-            last week
+            {weeklyDelta != null ? Math.abs(weeklyDelta).toFixed(2) : "—"}{" "}
+            <span className="hidden md:block">from last week</span>
           </p>
         </div>
         <div className="w-1/3 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
