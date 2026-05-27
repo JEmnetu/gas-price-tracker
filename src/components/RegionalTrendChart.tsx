@@ -34,7 +34,10 @@ const RegionalTrendChart = ({
         {region?.name}
       </h3>
       <ResponsiveContainer width="100%" height={400}>
-        <LineChart data={region?.trend}>
+        <LineChart
+          data={region?.trend}
+          margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
+        >
           <XAxis
             dataKey="date"
             interval={getRegionalXAxisInterval(timeRange, isMobile)}

@@ -23,7 +23,10 @@ const NationalTrendChart = ({ trend, selected }: NationalTrendChartProps) => {
   return (
     <>
       <ResponsiveContainer width="100%" height={400}>
-        <AreaChart data={trend}>
+        <AreaChart
+          data={trend}
+          margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
+        >
           <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
           <XAxis
             dataKey="date"

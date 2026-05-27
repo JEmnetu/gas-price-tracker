@@ -8,6 +8,8 @@ interface SummaryBarPropType {
   lastUpdated: string;
 }
 
+import useIsMobile from "../hooks/useIsMobile";
+
 const SummaryBar = ({
   nationalAvg,
   weeklyDelta,
@@ -18,7 +20,7 @@ const SummaryBar = ({
   lastUpdated,
 }: SummaryBarPropType) => {
   const weekOverWeek = weeklyDelta != null ? Math.sign(weeklyDelta) : null;
-
+  const isMobile = useIsMobile();
   return (
     <div className="w-full">
       <div className="w-full flex items-center justify-between border-gray-300 border-b p-6 pl-12 pr-8">
@@ -45,7 +47,7 @@ const SummaryBar = ({
       <div className="w-full flex">
         <div className="w-1/3 md:py-4 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
           <p className="text-xs  text-gray-400 uppercase tracking-wider mb-1">
-            National Average
+            National {isMobile ? "Avg" : "Average"}
           </p>
           <p className="text-2xl font-medium text-gray-900">
             ${nationalAvg?.toFixed(2)}
@@ -61,7 +63,7 @@ const SummaryBar = ({
           >
             {weekOverWeek === 1 ? "↑" : weekOverWeek === -1 ? "↓" : "—"} $
             {weeklyDelta != null ? Math.abs(weeklyDelta).toFixed(2) : "—"}{" "}
-            <span className="hidden md:block">from last week</span>
+            {!isMobile && "from last week"}
           </p>
         </div>
         <div className="w-1/3 flex flex-col items-center justify-center md:items-start md:pl-8 border-b border-r border-gray-200">
