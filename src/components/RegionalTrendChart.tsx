@@ -29,8 +29,8 @@ const RegionalTrendChart = ({
   const isMobile = useIsMobile();
   const varianceSign = variance != null ? Math.sign(variance) : null;
   return (
-    <>
-      <h3 className="text-base text-center font-medium text-gray-900 ps-14">
+    <div className="w-full">
+      <h3 className="text-base text-center font-medium text-gray-900">
         {region?.name}
       </h3>
       <ResponsiveContainer width="100%" height={400}>
@@ -62,25 +62,28 @@ const RegionalTrendChart = ({
           <Line type="monotone" dataKey="price" stroke="#3B82F6" dot={false} />
         </LineChart>
       </ResponsiveContainer>
-      <div className="w-full flex justify-evenly ml-6 mt-8">
-        <p>Current Price: ${(region?.current ?? 0).toFixed(2)}</p>
-        <p>
-          Variance vs National Price:
-          <span
-            className={
-              varianceSign === 1
-                ? "text-base text-red-500 font-medium mt-0.5"
-                : varianceSign === -1
-                  ? "text-base text-green-500 font-medium mt-0.5"
-                  : "text-base font-medium mt-0.5"
-            }
+      <div className="flex justify-around mt-4 pl-8">
+        <div>
+          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+            Current Price
+          </p>
+          <p className="text-xl font-medium text-gray-900">
+            ${(region?.current ?? 0).toFixed(2)}
+          </p>
+        </div>
+        <div>
+          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+            vs National
+          </p>
+          <p
+            className={`text-xl font-medium ${varianceSign === 1 ? "text-red-500" : varianceSign === -1 ? "text-green-500" : ""}`}
           >
-            ${varianceSign === 1 && "+"}
+            {varianceSign === 1 ? "+" : ""}
             {variance?.toFixed(2)}
-          </span>
-        </p>
+          </p>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
