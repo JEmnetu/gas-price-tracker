@@ -78,8 +78,8 @@ const RegionalTrendChart = ({
           <p
             className={`text-xl font-medium ${varianceSign === 1 ? "text-red-500" : varianceSign === -1 ? "text-green-500" : ""}`}
           >
-            {varianceSign === 1 ? "+" : ""}
-            {variance?.toFixed(2)}
+            {varianceSign === 1 ? "+$" : "-$"}
+            {Math.abs(variance ?? 0).toFixed(2)}
           </p>
         </div>
       </div>
