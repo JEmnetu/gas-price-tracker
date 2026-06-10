@@ -22,7 +22,7 @@ const SummaryBar = ({
   const weekOverWeek = weeklyDelta != null ? Math.sign(weeklyDelta) : null;
   const isMobile = useIsMobile();
   return (
-    <div className="w-full">
+    <div className="w-full sticky top-0 z-50 bg-white">
       <div className="w-full flex items-center justify-between border-gray-300 border-b p-6 pl-12 pr-8">
         <div className="flex items-baseline gap-4">
           <h1 className="text-base font-medium text-gray-900">

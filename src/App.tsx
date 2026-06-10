@@ -76,10 +76,10 @@ function App() {
           <TimeRangeSelector selected={timeRange} onChange={setTimeRange} />
         </div>
       </div>
-      <section className="w-full max-w-7xl mx-auto pl-0 pr-8 pt-12 pb-20">
+      <section className="w-full max-w-7xl mx-auto pl-0 pr-8 pt-0 pb-6">
         <div>
           {activeTab === "national" && (
-            <>
+            <div className="pt-4">
               {loading && (
                 // <div className="w-full relative min-h-64 flex justify-center">
                 <div className="absolute inset-0 flex items-center justify-center bg-white/60 z-10">
@@ -112,7 +112,7 @@ function App() {
                 trend={data?.national.trend ?? []}
                 selected={timeRange}
               />
-            </>
+            </div>
           )}
 
           {activeTab === "regional" && (
