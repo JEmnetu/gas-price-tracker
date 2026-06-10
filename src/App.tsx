@@ -25,7 +25,7 @@ function App() {
     );
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       <SummaryBar
         nationalAvg={data?.national.current ?? null}
         weeklyDelta={data?.national.weekOverWeekChange ?? null}
@@ -76,7 +76,7 @@ function App() {
           <TimeRangeSelector selected={timeRange} onChange={setTimeRange} />
         </div>
       </div>
-      <section className="w-full max-w-7xl mx-auto pl-0 pr-8 pt-0 pb-6">
+      <section className="w-full max-w-7xl mx-auto pl-0 pr-8 pt-0 pb-6 overflow-x-hidden">
         <div>
           {activeTab === "national" && (
             <div className="pt-4">
@@ -163,7 +163,7 @@ function App() {
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
