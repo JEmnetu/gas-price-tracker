@@ -1,3 +1,7 @@
+body {
+  overflow-x: clip;
+}
+
 button {
   cursor: pointer;
 }
